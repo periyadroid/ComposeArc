@@ -14,8 +14,13 @@ class MainViewModel(private val mainRepo: MainRepo) : ViewModel() {
     private val _uiState = MutableStateFlow(MainUIModel())
     val uiState: StateFlow<MainUIModel> = _uiState
 
+    /**
+     * Init all callback & initial API calls here
+     */
     fun onInitState(state: MainUIModel) {
-        _uiState.update { state.copy(onLoadClick = ::onLoadClick) }
+        _uiState.update { state.copy(
+            isLoading = false,
+            onLoadClick = ::onLoadClick) }
     }
 
     //If action needs to perform anything in viewmodel prefer this approach
